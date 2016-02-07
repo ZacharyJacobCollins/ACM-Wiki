@@ -8,7 +8,7 @@ import (
   "errors"
 )
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+var templates = template.Must(template.ParseFiles("./templates/view.html", "./templates/edit.html"))
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
 
 type Page struct {
@@ -83,8 +83,9 @@ func makeHandler(fn func (http.ResponseWriter, *http.Request, string)) http.Hand
 }
 
 func main() {
-  p1:=&Page{Title:"p1", Body: []byte("yippeee kai aie")}
-  p1.save()
+  http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+  home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
+  home.save()
   http.HandleFunc("/view/", makeHandler(viewHandler))
   http.HandleFunc("/edit/", makeHandler(editHandler))
   http.HandleFunc("/save/", makeHandler(saveHandler))
