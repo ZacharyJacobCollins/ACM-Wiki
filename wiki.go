@@ -6,10 +6,30 @@ import (
   "net/http"
   "regexp"
   "errors"
+
+	//chat imports
+	"flag"
 )
 
 var templates = template.Must(template.ParseFiles("./templates/view.html", "./templates/edit.html"))
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
+
+//chat globals
+var addr = flag.String("addr", ":8080", "http service address")
+var homeTempl = template.Must(template.ParseFiles("./templates/home.html"))
+
+//chat func
+func (h *hub)serveHome(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method != "GET" {
+		http.Error(w, "Method not allowed", 405)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	homeTempl.Execute(w, r.Host)
+}
+
 
 type Page struct {
     Title string
@@ -84,7 +104,15 @@ func makeHandler(fn func (http.ResponseWriter, *http.Request, string)) http.Hand
 
 func main() {
   http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-  home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
+	flag.Parse()
+	//Add 3 hubs for testing
+	contr.addHub()
+	contr.addHub()
+	contr.addHub()
+	//Start the controller struct
+  contr.run()
+
+	home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
   home.save()
   http.HandleFunc("/view/", makeHandler(viewHandler))
   http.HandleFunc("/edit/", makeHandler(editHandler))
