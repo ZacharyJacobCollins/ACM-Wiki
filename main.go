@@ -2,8 +2,8 @@ package main
 
 import (
   "net/http"
-  "/wiki"
-  "/chat"
+  "github.com/ZacharyJacobCollins/Wiki/chat"
+  "github.com/ZacharyJacobCollins/Wiki/wiki"
 )
 
 func main() {
