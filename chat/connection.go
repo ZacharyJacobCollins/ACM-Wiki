@@ -39,7 +39,7 @@ type connection struct {
 }
 
 // readPump pumps messages from the websocket connection to the hub.
-func (c *connection) readPump(h *hub) {
+func (c *connection) readPump(h *Hub) {
 	defer func() {
 		h.unregister <- c
 		c.ws.Close()
@@ -57,7 +57,7 @@ func (c *connection) readPump(h *hub) {
 }
 
 // write writes a message with the given message type and payload.
-func (c *connection) write(mt int, payload []byte, h *hub) error {
+func (c *connection) write(mt int, payload []byte, h *Hub) error {
 	c.ws.SetWriteDeadline(time.Now().Add(writeWait))
 
 	nickname := []byte(c.name+"")
@@ -66,7 +66,7 @@ func (c *connection) write(mt int, payload []byte, h *hub) error {
 }
 
 // writePump pumps messages from the hub to the websocket connection.
-func (c *connection) writePump(h *hub) {
+func (c *connection) writePump(h *Hub) {
 	ticker := time.NewTicker(pingPeriod)
 	defer func() {
 		ticker.Stop()
@@ -96,7 +96,7 @@ func (c *connection) writePump(h *hub) {
 }
 
 // serveWs handles websocket connection requests from the peer.
-func (h *hub) serveWs(w http.ResponseWriter, r *http.Request) {
+func (h *Hub) serveWs(w http.ResponseWriter, r *http.Request) {
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)

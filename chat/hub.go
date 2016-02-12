@@ -5,7 +5,7 @@ import (
 )
 
 //hub is similar to a "channel" in slack.
-type hub struct {
+type Hub struct {
 	// Registered broadcasts.
 	connections map[*connection]bool
 
@@ -23,7 +23,7 @@ type hub struct {
 }
 
 //chat func
-func (h *hub) serveChat(w http.ResponseWriter, r *http.Request) {
+func (h *Hub) serveChat(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Method not allowed", 405)
 		return
@@ -33,7 +33,7 @@ func (h *hub) serveChat(w http.ResponseWriter, r *http.Request) {
 }
 
 //it's only using the last hub even though we created 3.
-func (h *hub) run() {
+func (h *Hub) run() {
 	for {
 		select {
 		case c := <-h.register:
