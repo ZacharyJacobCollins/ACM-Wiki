@@ -8,19 +8,17 @@ import (
 )
 
 const (
-	// Time allowed to write a message to the peer.
-	writeWait = 10 * time.Second
+	// Three hours is max time wihtout sending anything
+	writeWait = 180 * time.Second
 
-	// Time allowed to read the next pong message from the peer.
-	pongWait = 60 * time.Second
+	// Three hours is max time wihtout sending anything
+	pongWait = 180 * time.Second
 
 	// Send pings to peer with this period. Must be less than pongWait.
 	pingPeriod = (pongWait * 9) / 10
-
-	// Maximum message size allowed from peer.
-	maxMessageSize = 512
 )
 
+//Buffer size for messages, stopping data loss
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -30,10 +28,8 @@ var upgrader = websocket.Upgrader{
 type connection struct {
 	// The websocket connection
 	ws *websocket.Conn
-
 	//name of the connection or the id of the person TODO
 	name string
-
 	// Buffered channel of outbound messages.
 	send chan []byte
 }
@@ -44,7 +40,6 @@ func (c *connection) readPump(h *Hub) {
 		h.unregister <- c
 		c.ws.Close()
 	}()
-	c.ws.SetReadLimit(maxMessageSize)
 	c.ws.SetReadDeadline(time.Now().Add(pongWait))
 	c.ws.SetPongHandler(func(string) error { c.ws.SetReadDeadline(time.Now().Add(pongWait)); return nil })
 	for {
@@ -59,8 +54,7 @@ func (c *connection) readPump(h *Hub) {
 // write writes a message with the given message type and payload.
 func (c *connection) write(mt int, payload []byte, h *Hub) error {
 	c.ws.SetWriteDeadline(time.Now().Add(writeWait))
-
-	nickname := []byte(c.name+"")
+	nickname := []byte(c.name + "")
 	payload = append(nickname, payload...)
 	return c.ws.WriteMessage(mt, payload)
 }
@@ -107,16 +101,11 @@ func (h *Hub) serveWs(w http.ResponseWriter, r *http.Request) {
 	//register connection to hub
 	h.register <- c
 
-
 	//if there are messages in message array, send messages to connection.  This is sending as one big message though for whatever reason.  TODO  MAKE SURE THEY"RE SEPARATE IN THE PUMP
 	if len(h.messages) > 0 {
-		// for _, m := range h.messages {
-			 //Awful awful runtime here  TODO
-		//	byteMessage := []byte(m)
-			if err := c.write(websocket.TextMessage, h.messages, h); err != nil {
-				return
-			}
-		 //}
+		if err := c.write(websocket.TextMessage, h.messages, h); err != nil {
+			return
+		}
 	}
 
 	//Place Read pump in goroutine for indefinite listening.

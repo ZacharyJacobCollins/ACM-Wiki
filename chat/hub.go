@@ -1,8 +1,11 @@
 package chat
 
 import (
+	"html/template"
 	"net/http"
 )
+
+var homeTemplate = template.Must(template.ParseFiles("./chat/templates/home.html"))
 
 //hub is similar to a "channel" in slack.
 type Hub struct {
@@ -23,13 +26,13 @@ type Hub struct {
 }
 
 //chat func
-func (h *Hub) serveChat(w http.ResponseWriter, r *http.Request) {
+func (h *Hub) executeHub(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Method not allowed", 405)
 		return
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	homeTempl.Execute(w, r.Host)
+	homeTemplate.Execute(w, r.Host)
 }
 
 //it's only using the last hub even though we created 3.

@@ -5,10 +5,18 @@ import (
 )
 
 type Wiki struct {
-    Pages []Page
+    pages []Page
 }
 
-func (Wiki)Run() {
+func NewWiki() Wiki {
+	var wiki = Wiki {
+		pages: make([]Page, 0),
+	}
+	return wiki
+}
+
+func (Wiki) Run() {
+
   home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
   home.save()
   http.HandleFunc("/view/", makeHandler(viewHandler))
