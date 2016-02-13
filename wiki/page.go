@@ -2,13 +2,11 @@ package wiki
 
 import (
 	"errors"
-	"html/template"
 	"io/ioutil"
 	"net/http"
 )
 
-//Link to templates for wiki.  Remember that the templates are run from the executables path, NOT the path of the go file.
-var templates = template.Must(template.ParseFiles("./wiki/templates/view.html", "./wiki/templates/edit.html"))
+
 
 type Page struct {
 	Title string

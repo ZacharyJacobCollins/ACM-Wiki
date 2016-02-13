@@ -3,8 +3,11 @@ package wiki
 import (
 	"net/http"
 	"regexp"
+	"html/template"
 )
 
+//Link to templates for wiki.  Remember that the templates are run from the executables path, NOT the path of the go file.
+var templates = template.Must(template.ParseFiles("./wiki/templates/view.html", "./wiki/templates/edit.html"))
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
 
 func viewHandler(w http.ResponseWriter, r *http.Request, title string) {

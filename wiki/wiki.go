@@ -16,7 +16,7 @@ func NewWiki() Wiki {
 }
 
 func (Wiki) Run() {
-
+  
   home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
   home.save()
   http.HandleFunc("/view/", makeHandler(viewHandler))
