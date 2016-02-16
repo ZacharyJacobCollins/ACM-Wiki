@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-
-
 type Page struct {
 	Title string
 	Body  []byte
