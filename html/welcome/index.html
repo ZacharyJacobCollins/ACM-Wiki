@@ -20,7 +20,7 @@
 					<div class="ha-header-front">
 						<h1><span>Nucleus</span></h1>
 						<nav>
-							<a id="wiki" href="./html/wiki/index.html">Wiki</a>
+							<button>Wiki</button>
 							<a id="chat" href="./0">Chat</a>
 							<a href="./html/home/index.html">Test</a>
 							<a href="./html/home/index.html">Test</a>
@@ -41,7 +41,7 @@
 		</script>
 		<script>
 		$(document).ready(function(){
-			$("#wiki").click(function(){
+			$("button").click(function(){
 				$("#display").load("./0");
 				$("#ha-header").addClass('ha-header-hidden').removeClass('ha-header-hide');
 			});
