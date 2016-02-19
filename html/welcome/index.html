@@ -7,10 +7,12 @@
 		<title>Nucleus</title>
 		<meta name="description" content="Inspiration for on scroll header animations with various effects" />
 		<meta name="keywords" content="on scroll, animate, header, transition, css3, 3d, effect, inspiration" />
-		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="../favicon.ico">
+		<meta name="Zachary Collins" content="Nucleus" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/default.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/welcome/component.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/welcome/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/welcome/animations.css" />
+		<script src="../assets/js/modernizr.custom.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -20,10 +22,25 @@
 					<div class="ha-header-front">
 						<h1><span>Nucleus</span></h1>
 						<nav>
-							<button>Wiki</button>
-							<a id="chat" href="./0">Chat</a>
-							<a href="./html/home/index.html">Test</a>
-							<a href="./html/home/index.html">Test</a>
+								<div id="dl-menu" class="dl-menuwrapper">
+									<ul class="dl-menu">
+										<ul class="dl-submenu">
+											<li data-animation="1"><a href="#">Move to left/ from right</a></li>
+											<li data-animation="2"><a href="#">Move to right/ from left</a></li>
+											<li data-animation="3"><a href="#">Move to top/ from bottom</a></li>
+											<li data-animation="4"><a href="#">Move to bottom/ from top</a></li>
+										</ul>
+									</ul>
+								</div><!-- /dl-menu-wrapper-->
+
+								<div id="pt-main" class="pt-perspective">
+									<div class="pt-page pt-page-1"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+									<div class="pt-page pt-page-2"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+									<div class="pt-page pt-page-3"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+									<div class="pt-page pt-page-4"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+									<div class="pt-page pt-page-5"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+									<div class="pt-page pt-page-6"><h1><span>A collection of</span><strong>Page</strong> Transitions</h1></div>
+								</div>
 						</nav>
 					</div>
 				</div>
@@ -37,15 +54,9 @@
 		</div><!-- /container -->
 	</body>
 	<footer>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-		</script>
-		<script>
-		$(document).ready(function(){
-			$("button").click(function(){
-				$("#display").load("./0");
-				$("#ha-header").addClass('ha-header-hidden').removeClass('ha-header-hide');
-			});
-		});
-		</script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="../assets/js/welcome/jquery.dlmenu.js"></script>
+		<script src="../assets/js/welcome/js/pagetransitions.js"></script>
+
 	</footer>
 </html>
