@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"html/template"
-
 )
 
 type Page struct {

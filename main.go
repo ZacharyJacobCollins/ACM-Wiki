@@ -28,6 +28,6 @@ func main() {
   c := chat.NewChat();  c.Run(3);
   w := wiki.NewWiki();  w.Run();
   http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-  http.Handle("/nucleus", http.StripPrefix("/nucleus", http.FileServer(http.Dir("./html"))))
+  http.Handle("/nucleus", http.StripPrefix("/nucleus", http.FileServer(http.Dir("./html/welcome"))))
 	http.ListenAndServe(":1337", nil)
 }
