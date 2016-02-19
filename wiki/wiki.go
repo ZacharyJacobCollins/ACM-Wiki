@@ -2,7 +2,11 @@ package wiki
 
 import (
   "net/http"
+  "regexp"
 )
+
+//Link to templates for wiki.  Remember that the templates are run from the executables path, NOT the path of the go file.
+var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
 
 type Wiki struct {
     pages []Page
@@ -16,10 +20,7 @@ func NewWiki() Wiki {
 }
 
 func (Wiki) Run() {
-  
   home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
   home.save()
-  http.HandleFunc("/view/", makeHandler(viewHandler))
-  http.HandleFunc("/edit/", makeHandler(editHandler))
-  http.HandleFunc("/save/", makeHandler(saveHandler))
+
 }
