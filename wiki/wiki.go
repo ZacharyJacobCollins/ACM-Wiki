@@ -1,4 +1,4 @@
-package wiki
+package main
 
 import (
   "net/http"
@@ -22,5 +22,4 @@ func NewWiki() Wiki {
 func (Wiki) Run() {
   home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
   home.save()
-
 }

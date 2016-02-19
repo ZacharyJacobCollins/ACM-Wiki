@@ -1,4 +1,4 @@
-package wiki
+package main
 
 import (
 	"errors"
