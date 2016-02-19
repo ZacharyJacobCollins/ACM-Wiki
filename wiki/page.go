@@ -1,4 +1,4 @@
-package main
+package wiki
 
 import (
 	"errors"
@@ -6,8 +6,6 @@ import (
 	"net/http"
 	"html/template"
 
-	//Third party imports
-	"github.com/ZacharyJacobCollins/Wiki/wiki"
 )
 
 type Page struct {

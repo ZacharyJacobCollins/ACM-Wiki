@@ -1,8 +1,9 @@
-package main
+package wiki
 
 import (
-  "net/http"
   "regexp"
+  "net/http"
+
 )
 
 //Link to templates for wiki.  Remember that the templates are run from the executables path, NOT the path of the go file.
@@ -22,4 +23,7 @@ func NewWiki() Wiki {
 func (Wiki) Run() {
   home:=&Page{Title:"Home", Body: []byte("Welcome to the Acm Wiki")}
   home.save()
+  http.HandleFunc("/view/", makeHandler(viewHandler))
+  http.HandleFunc("/edit/", makeHandler(editHandler))
+  http.HandleFunc("/save/", makeHandler(saveHandler))
 }

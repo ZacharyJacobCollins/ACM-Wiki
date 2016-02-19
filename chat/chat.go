@@ -1,4 +1,4 @@
-package main
+package chat
 
 import (
 	"net/http"
@@ -31,20 +31,18 @@ func (c *Chat) addHub() {
 }
 
 //Run function found in all applications to startup this module  TODO initialize with number of hubs to run.
-//TODO on addHub needs to be the embed/run thing.  Needs to be by convo name as apposed to number, and TODO needs to be verification that it doesn't already exist
-
-func (c *Chat) Run() {
+//Pass in how many hubs to run in server - run.
+func (c *Chat) Run(n int) {
 	flag.Parse()
 	//Add 3 hubs for testing
-	c.addHub()
-	c.addHub()
-	c.addHub()
-	//Start each hub in a goroutine
+	for i:=0; i<n; i++ {
+		c.addHub()
+	}
+	//Start each hub in a goroutine.  Register handler for hub on creation.
 	for i, h := range c.hubs {
 		go h.run()
 		num := strconv.Itoa(i)
 		http.HandleFunc("/"+num, h.executeHub)
 		http.HandleFunc("/ws"+"/"+num, h.serveWs)
 	}
-
 }
