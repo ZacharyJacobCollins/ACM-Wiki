@@ -86,10 +86,10 @@ section p {
 
 .ha-header-perspective > div {
 	background: #ffe6e6;
-	background: -webkit-linear-gradient(left, #ffe6e6 , white); /* For Safari 5.1 to 6.0 */
-	background: -o-linear-gradient(right, #ffe6e6, white); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(right, #ffe6e6, white); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(to right, #ffe6e6 , white); /* Standard syntax */
+	background: -webkit-linear-gradient(left, #ffaeae , white); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(right, #ffaeae, white); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(right, #ffaeae, white); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to right, #ffaeae , white); /* Standard syntax */
 	text-align: left;
 	padding: 0 7%;
 	height: 50%;
