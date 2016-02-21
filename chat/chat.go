@@ -25,7 +25,7 @@ func (c *Chat) addHub() {
 		register:    make(chan *connection),
 		unregister:  make(chan *connection),
 		connections: make(map[*connection]bool),
-		messages:    make([]byte, 0),
+		messages:    make([][]byte, 0),
 	}
 	c.hubs = append(c.hubs, &h)
 }
