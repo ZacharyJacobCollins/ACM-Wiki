@@ -1,19 +1,18 @@
 package chat
 
 import (
-	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/gorilla/websocket"
 )
 
 const (
 	// Three hours is max time wihtout sending anything
 	writeWait = 180 * time.Second
-
 	// Three hours is max time wihtout sending anything
 	pongWait = 180 * time.Second
-
 	// Send pings to peer with this period. Must be less than pongWait.
 	pingPeriod = (pongWait * 9) / 10
 )
@@ -103,8 +102,12 @@ func (h *Hub) serveWs(w http.ResponseWriter, r *http.Request) {
 
 	//if there are messages in message array, send messages to connection.  This is sending as one big message though for whatever reason.  TODO  MAKE SURE THEY"RE SEPARATE IN THE PUMP
 	if len(h.messages) > 0 {
-		if err := c.write(websocket.TextMessage, h.messages, h); err != nil {
-			return
+		for _, m := range h.messages {
+			var s []byte
+			s = make([]byte, m)
+			if err := c.write(websocket.TextMessage, s, h); err != nil {
+				return
+			}
 		}
 	}
 

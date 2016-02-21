@@ -35,7 +35,7 @@ func (c *Chat) addHub() {
 func (c *Chat) Run(n int) {
 	flag.Parse()
 	//Add 3 hubs for testing
-	for i:=0; i<n; i++ {
+	for i := 0; i < n; i++ {
 		c.addHub()
 	}
 	//Start each hub in a goroutine.  Register handler for hub on creation.
