@@ -101,15 +101,8 @@ func (h *Hub) serveWs(w http.ResponseWriter, r *http.Request) {
 	h.register <- c
 
 	//if there are messages in message array, send messages to connection.  This is sending as one big message though for whatever reason.  TODO  MAKE SURE THEY"RE SEPARATE IN THE PUMP
-	for i := 0; i < len(h.messages); i++ {
-		s := [][]byte{}
-		log.Println("first i : ")
-		log.Print(i)
-		s = append(s, h.messages[i])
-		log.Println("after i  : ")
-		log.Print(i)
-
-		if err := c.write(websocket.TextMessage, s[i], h); err != nil {
+	for _, m := range h.messages {
+		if err := c.write(websocket.TextMessage, m, h); err != nil {
 			return
 		}
 	}
