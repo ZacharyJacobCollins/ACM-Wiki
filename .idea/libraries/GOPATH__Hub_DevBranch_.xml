@@ -1,0 +1,36 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;Hub_DevBranch&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../.git" />
+      <root url="file://$PROJECT_DIR$/../.." />
+      <root url="file://$PROJECT_DIR$/../../../golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../google.golang.org" />
+      <root url="file://$PROJECT_DIR$/../../../Thumbs.db" />
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <excluded>
+      <root url="file://$PROJECT_DIR$/../../../.git" />
+      <root url="file://$PROJECT_DIR$/../../gorilla/mux/.git" />
+      <root url="file://$PROJECT_DIR$/../Wiki/.git" />
+      <root url="file://$PROJECT_DIR$/../../../golang.org/x/net/.git" />
+      <root url="file://$PROJECT_DIR$/../../../gopkg.in/mgo.v2/.git" />
+      <root url="file://$PROJECT_DIR$/../../bmizerany/pat/.git" />
+      <root url="file://$PROJECT_DIR$/html/welcome/.git" />
+      <root url="file://$PROJECT_DIR$/../../mikejs/gomongo/.git" />
+      <root url="file://$PROJECT_DIR$/../../gorilla/context/.git" />
+      <root url="file://$PROJECT_DIR$" />
+      <root url="file://$PROJECT_DIR$/../mongotest/.git" />
+      <root url="file://$PROJECT_DIR$/../pat/.git" />
+      <root url="file://$PROJECT_DIR$/.idea" />
+      <root url="file://$PROJECT_DIR$/../FacebookOauth/.git" />
+      <root url="file://$PROJECT_DIR$/.git" />
+      <root url="file://$PROJECT_DIR$/../DevHub/.git" />
+      <root url="file://$PROJECT_DIR$/html/welcome/assets/.sass-cache" />
+      <root url="file://$PROJECT_DIR$/../../gorilla/securecookie/.git" />
+      <root url="file://$PROJECT_DIR$/../../../google.golang.org/appengine/.git" />
+      <root url="file://$PROJECT_DIR$/../../gorilla/websocket/.git" />
+    </excluded>
+  </library>
+</component>

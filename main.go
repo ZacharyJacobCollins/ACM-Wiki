@@ -23,11 +23,17 @@ import (
 // 		fn(w, r, m[2])
 // 	}
 // }
+/*
+        Wiki handlers, probably should put wiki in front
+	http.HandleFunc("/view/", makeHandler(viewHandler))
+	http.HandleFunc("/edit/", makeHandler(editHandler))
+	http.HandleFunc("/save/", makeHandler(saveHandler))
+ */
 
 func main() {
   c := chat.NewChat();  c.Run(3);
   w := wiki.NewWiki();  w.Run();
   http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-  http.Handle("/nucleus", http.StripPrefix("/nucleus", http.FileServer(http.Dir("./html/welcome"))))
+  http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("./html/welcome"))))
 	http.ListenAndServe(":1337", nil)
 }
